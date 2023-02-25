@@ -6,9 +6,11 @@ import type {
   ApiHeaderHeader as ApiHeader,
 } from "../../@types/schemas";
 
-export const strapiBase = `http://localhost:${
-  import.meta.env.VITE_STRAPI_PORT
-}`;
+export function getStrapiBase() {
+  return `${
+    import.meta.env.SSR ? import.meta.env.VITE_STRAPI_HOST : "http://localhost"
+  }:${import.meta.env.VITE_STRAPI_PORT}`;
+}
 
 type ImageSize = "original" | "thumbnail" | "small" | "medium" | "large";
 
@@ -19,7 +21,7 @@ function mapImage({
     alternativeText,
     caption,
     formats,
-    url: `${strapiBase}${url}`,
+    url: `${getStrapiBase()}${url}`,
   };
 }
 
@@ -80,7 +82,7 @@ export function getListFactory(
       },
     };
 
-    const uri = `${strapiBase}/api/${contentType}`;
+    const uri = `${getStrapiBase()}/api/${contentType}`;
     return axios
       .get(uri, config)
       .then(({ data: { data } }) => data.map(mapArticle));
@@ -119,7 +121,7 @@ export function getItemFactory(
         ...filters,
       },
     };
-    const uri = `${strapiBase}/api/${contentType}`;
+    const uri = `${getStrapiBase()}/api/${contentType}`;
     return axios
       .get(uri, config)
       .then(({ data: { data } }) =>
