@@ -21,7 +21,6 @@ const props = defineProps<ImageProps>();
 
 const imageUrl = computed(() => {
   const imageSize: ImageSize = (props.imageSize as ImageSize) || "original";
-  console.log(props.image);
   if (imageSize === "original") {
     return props.image.url;
   }

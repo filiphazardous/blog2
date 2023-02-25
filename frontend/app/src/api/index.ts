@@ -120,7 +120,6 @@ export function getItemFactory(
   populate: string[] = [],
   filter: { [key: string]: string } = {}
 ) {
-  console.log(getStrapiBase());
   const filters = Object.keys(filter)
     .sort()
     .reduce(
