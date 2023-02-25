@@ -1,0 +1,15 @@
+{
+  "name": "pixiblog",
+  "version": "0.1.0",
+  "description": "A Strapi-base blog",
+  "scripts": {
+    "dev": "docker-compose -f docker-compose.dev.yml -f docker-compose.env.yml up"
+  },
+  "devDependencies": {},
+  "dependencies": {
+  },
+  "author": {
+    "name": "Filip Joelsson <filip.gberg@gmail.com>"
+  },
+  "license": "MIT"
+}
