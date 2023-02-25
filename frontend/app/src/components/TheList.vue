@@ -3,13 +3,16 @@ import { getListFactory } from "@/api";
 import ListItem from "@/components/ListItem.vue";
 import TheError from "@/components/TheError.vue";
 import { useQuery } from "@tanstack/vue-query";
+import { onServerPrefetch } from "vue";
 
 const {
   isLoading,
   isError,
   data: list,
   error,
+  suspense,
 } = useQuery(getListFactory("articles", ["image"]));
+onServerPrefetch(suspense);
 </script>
 
 <template>

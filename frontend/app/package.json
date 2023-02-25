@@ -5,15 +5,17 @@
     "dev": "vite --host",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "vite-ssg build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../.gitignore"
   },
   "dependencies": {
     "@tanstack/vue-query": "^4.24.6",
+    "@vueuse/head": "^1.0.25",
     "axios": "^1.3.2",
+    "vite-ssg": "^0.22.1",
     "vue": "^3.2.45",
-    "vue-markdown-render": "^2.0.1",
+    "vue-markdown-render": "github:filiphazardous/vue-markdown-render",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {

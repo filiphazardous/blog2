@@ -1,12 +1,33 @@
-import { VueQueryPlugin } from "@tanstack/vue-query";
-import type { Plugin } from "vue";
-import { createApp } from "vue";
+import {
+  dehydrate,
+  hydrate,
+  QueryClient,
+  VueQueryPlugin,
+} from "@tanstack/vue-query";
+import { ViteSSG } from "vite-ssg";
+
 import App from "./App.vue";
 
 import "./assets/main.css";
-import router from "./router";
+import routes from "./router";
 
-createApp(App)
-  .use(VueQueryPlugin as Plugin)
-  .use(router)
-  .mount("#app");
+export const createApp = ViteSSG(
+  App,
+  { routes },
+  ({ app, router, routes, isClient, initialState }) => {
+    console.log("app", app);
+    console.log("router", router);
+    console.log("routes", routes);
+    console.log("isClient", isClient);
+    console.log("initialState", initialState);
+
+    const queryClient = new QueryClient();
+    if (import.meta.env.SSR) {
+      initialState.vueQueryState = { toJSON: () => dehydrate(queryClient) };
+    } else {
+      hydrate(queryClient, initialState.vueQueryState);
+    }
+
+    app.use(VueQueryPlugin, { queryClient });
+  }
+);

@@ -2,13 +2,16 @@
 import { getItemFactory } from "@/api";
 import TheError from "@/components/TheError.vue";
 import { useQuery } from "@tanstack/vue-query";
+import { onServerPrefetch } from "vue";
 
 const {
   isLoading,
   isError,
   data: footer,
   error,
+  suspense,
 } = useQuery(getItemFactory("footer", ["logo"]));
+onServerPrefetch(suspense);
 </script>
 
 <template>

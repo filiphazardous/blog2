@@ -2,13 +2,16 @@
 import { getItemFactory } from "@/api";
 import TheError from "@/components/TheError.vue";
 import { useQuery } from "@tanstack/vue-query";
+import { onServerPrefetch } from "vue";
 import { RouterLink } from "vue-router";
 const {
   isLoading,
   isError,
   data: header,
   error,
+  suspense,
 } = useQuery(getItemFactory("header", ["logo"]));
+onServerPrefetch(suspense);
 </script>
 
 <template>

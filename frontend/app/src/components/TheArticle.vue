@@ -2,6 +2,7 @@
 import { getItemFactory } from "@/api";
 import TheError from "@/components/TheError.vue";
 import { useQuery } from "@tanstack/vue-query";
+import { onServerPrefetch } from "vue";
 import VueMarkdown from "vue-markdown-render";
 
 const props = defineProps({
@@ -16,7 +17,9 @@ const {
   isError,
   data: article,
   error,
+  suspense,
 } = useQuery(getItemFactory("articles", ["image"], { slug: props.slug }));
+onServerPrefetch(suspense);
 </script>
 
 <template>
