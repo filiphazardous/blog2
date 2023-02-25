@@ -26,7 +26,7 @@ function mapImage({
 function mapArticle({
   attributes: { title, slug, summary, text, publishedAt, image: imageIn },
 }: ApiArticle) {
-  const image = (imageIn as any).data as Media[];
+  const image = (imageIn as any)?.data as Media[];
   return {
     title,
     slug,
@@ -40,8 +40,8 @@ function mapArticle({
 function mapHeader({
   attributes: { siteName, subtitle, logo: logoIn },
 }: ApiHeader) {
-  const logo = (logoIn as any).data as Media;
-  return { siteName, subtitle, logo: mapImage(logo) };
+  const logo = (logoIn as any)?.data as Media;
+  return { siteName, subtitle, logo: logo ? mapImage(logo) : undefined };
 }
 
 function mapFooter({ attributes: { copyright, contact } }: ApiFooter) {
