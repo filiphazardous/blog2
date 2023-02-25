@@ -1,6 +1,7 @@
 version: '3'
 services:
   mariadb:
+    container_name: mariadb
     image: bitnami/mariadb:10.8
     volumes:
       - ./db:/bitnami/mariadb
@@ -31,7 +32,21 @@ services:
       - ./backend/app/database:/opt/app/database
       - ./backend/app/config:/opt/app/config
       - ./backend/app/public:/opt/app/public
-    ports:
-      - '1337:1337'
     depends_on:
       - mariadb
+
+  vue:
+    container_name: vue
+    build:
+      context: frontend
+      dockerfile: dev.Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./frontend/app/public:/opt/app/public
+      - ./frontend/app/src:/opt/app/src
+    environment:
+      VITE_STRAPI_PORT: 1337
+    ports:
+      - '5173:5173'
+    depends_on:
+      - strapi
