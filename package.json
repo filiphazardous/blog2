@@ -7,7 +7,11 @@
     "rebuild": "docker-compose -f docker-compose.dev.yml build",
     "rebuild:vue": "docker-compose -f docker-compose.dev.yml build vue",
     "rebuild:strapi": "docker-compose -f docker-compose.dev.yml build strapi",
-    "rebuild:mariadb": "docker-compose -f docker-compose.dev.yml build mariadb"
+    "rebuild:mariadb": "docker-compose -f docker-compose.dev.yml build mariadb",
+    "restart": "docker-compose -f docker-compose.dev.yml restart",
+    "restart:vue": "docker-compose -f docker-compose.dev.yml restart vue",
+    "restart:strapi": "docker-compose -f docker-compose.dev.yml restart strapi",
+    "restart:mariadb": "docker-compose -f docker-compose.dev.yml restart mariadb"
   },
   "devDependencies": {},
   "dependencies": {
