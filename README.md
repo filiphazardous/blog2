@@ -13,3 +13,9 @@ Note: The logs will show a couple of failed attempts to start, this is
 because strapi isn't able to start until mariadb accepts connections.
 This is not a problem, the strapi instance will just try to start over
 and over until the database is available.
+
+## Rebuild some aspect of the environment
+If you need to trigger a docker image rebuild, eg because you changed
+the package.json file, this can be done with `npm run rebuild:vue` 
+(or  strapi or mariadb). If you want to rebuild all images, that'- as
+easy as `npm run rebuild`

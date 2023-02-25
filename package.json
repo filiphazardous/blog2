@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "description": "A Strapi-base blog",
   "scripts": {
-    "dev": "docker-compose -f docker-compose.dev.yml -f docker-compose.env.yml up"
+    "dev": "docker-compose -f docker-compose.dev.yml -f docker-compose.env.yml up",
+    "rebuild": "docker-compose -f docker-compose.env.yml build",
+    "rebuild:vue": "docker-compose -f docker-compose.env.yml build vue",
+    "rebuild:strapi": "docker-compose -f docker-compose.env.yml build strapi",
+    "rebuild:mariadb": "docker-compose -f docker-compose.env.yml build mariadb"
   },
   "devDependencies": {},
   "dependencies": {
