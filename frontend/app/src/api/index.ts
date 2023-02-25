@@ -1,4 +1,6 @@
+import type { Media } from "@strapi/strapi";
 import axios from "axios";
+import type { ApiArticleArticle } from "../../@types/schemas";
 
 export const strapiBase = `http://localhost:${
   import.meta.env.VITE_STRAPI_PORT
@@ -15,7 +17,7 @@ export function getListFactory(
   function mapImage({
     id,
     attributes: { alternativeText, caption, formats, url },
-  }) {
+  }: Media) {
     const imageUrl = imageSize === "original" ? url : formats[imageSize].url;
     return {
       id,
@@ -27,16 +29,15 @@ export function getListFactory(
   }
 
   function mapItem({
-    id,
-    attributes: { title, slug, summary, publishedAt, image },
-  }) {
+    attributes: { title, slug, summary, publishedAt, image: imageIn },
+  }: ApiArticleArticle) {
+    const image = (imageIn as any).data as Media[];
     return {
-      id,
       title,
       slug,
       summary,
       publishedAt,
-      image: populate.length ? image.data.map(mapImage) : [],
+      image: populate.length ? image.map(mapImage) : [],
     };
   }
 
@@ -70,12 +71,10 @@ export function getItemFactory(
   imageSize: ImageSize = "original"
 ) {
   function mapImage({
-    id,
     attributes: { alternativeText, caption, formats, url },
-  }) {
+  }: Media) {
     const imageUrl = imageSize === "original" ? url : formats[imageSize].url;
     return {
-      id,
       alternativeText,
       caption,
       formats,
@@ -84,17 +83,16 @@ export function getItemFactory(
   }
 
   function mapItem({
-    id,
-    attributes: { title, slug, summary, text, publishedAt, image },
-  }) {
+    attributes: { title, slug, summary, text, publishedAt, image: imageIn },
+  }: ApiArticleArticle) {
+    const image = (imageIn as any).data as Media[];
     return {
-      id,
       title,
       slug,
       summary,
       text,
       publishedAt,
-      image: populate.length ? image.data.map(mapImage) : [],
+      image: populate.length ? image.map(mapImage) : [],
     };
   }
 
