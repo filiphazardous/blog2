@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getItemFactory } from "@/api";
+import TheError from "@/components/TheError.vue";
 import { useQuery } from "@tanstack/vue-query";
 import VueMarkdown from "vue-markdown-render";
 
@@ -15,15 +16,12 @@ const {
   isError,
   data: article,
   error,
-} = useQuery(getItemFactory(props.slug, "articles", ["image"], "large"));
+} = useQuery(getItemFactory("articles", ["image"], { slug: props.slug }));
 </script>
 
 <template>
   <span v-if="isLoading">Loading...</span>
-  <div v-else-if="isError">
-    <h1>Error</h1>
-    <pre>{{ JSON.stringify(error, null, "\t") }}</pre>
-  </div>
+  <TheError v-else-if="isError" :error="error" />
   <div v-else>
     <h1>{{ article.title }}</h1>
     <p>{{ article.summary }}</p>
