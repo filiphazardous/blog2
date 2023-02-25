@@ -1,21 +1,24 @@
-# Simple test-project for Strapi/Vue combo
+# Pixieblog
+A simple test-project for Strapi/Vue combo
 
 ## Create the dev environment
 
 - Install docker
 - Create a strapi project to get the env variables
-- Copy the `docker-compose.env.example.yml` file to `docker-compose.env.yml` and fill in the env variables
+- Copy the `.env.example` file to `.env` and fill in the env variables
 
 ## Run the dev environment
 - Run `npm run dev` in the project root
 
-Note: The logs will show a couple of failed attempts to start, this is
-because strapi isn't able to start until mariadb accepts connections.
-This is not a problem, the strapi instance will just try to start over
-and over until the database is available.
+## Test the prod environment
+- Run `npm run prod` in the project root
+
+## Other docker related stuff
+- `npm run logs` will output the logs
+- `npm run stop` will stop the environments
 
 ## Rebuild some aspect of the environment
 If you need to trigger a docker image rebuild, eg because you changed
 the package.json file, this can be done with `npm run rebuild:vue` 
-(or  strapi or mariadb). If you want to rebuild all images, that'- as
+(or  strapi or mariadb). If you want to rebuild all images, that's as
 easy as `npm run rebuild`
