@@ -1,0 +1,14 @@
+version: '3'
+services:
+  mariadb:
+    image: bitnami/mariadb:10.8
+    volumes:
+      - ./db:/bitnami/mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: strapi
+      MARIADB_DATABASE: strapi
+      MARIADB_USER: strapi
+      MARIADB_PASSWORD: strapi
+    user: "${UID:-1000}"
+    ports:
+      - '3306:3306'
