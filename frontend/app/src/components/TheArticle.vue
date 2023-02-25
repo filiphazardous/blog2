@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getItemFactory } from "@/api";
 import TheError from "@/components/TheError.vue";
+import TheImage from "@/components/TheImage.vue";
 import { useQuery } from "@tanstack/vue-query";
 import { onServerPrefetch } from "vue";
 import VueMarkdown from "vue-markdown-render";
@@ -28,18 +29,19 @@ onServerPrefetch(suspense);
   <div v-else>
     <h1>{{ article.title }}</h1>
     <p>{{ article.summary }}</p>
-    <template v-if="article.image.length">
-      <div v-for="img in article.image" :key="img.url">
-        <img class="article-image" :src="img.url" :alt="img.alt" />
-        <i>{{ img.caption }}</i>
-      </div>
-    </template>
-    <vue-markdown :source="article.text" />
+    <TheImage
+      v-if="article.image.length"
+      :image="article.image[0]"
+      image-size="large"
+    />
+    <vue-markdown class="article-text" :source="article.text" />
+    <RouterLink to="/">Tillbaka till huvudsidan</RouterLink>
   </div>
 </template>
 
-<style scoped>
-.article-image {
-  max-width: 100%;
+<style>
+.article-text p {
+  display: block;
+  padding-bottom: 1em;
 }
 </style>

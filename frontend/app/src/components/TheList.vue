@@ -21,6 +21,7 @@ onServerPrefetch(suspense);
   <template v-else>
     <ListItem
       v-for="item in list"
+      class="list-item"
       :key="item.slug"
       :title="item.title"
       :summary="item.summary"
@@ -29,3 +30,9 @@ onServerPrefetch(suspense);
     />
   </template>
 </template>
+
+<style scoped>
+.list-item {
+  margin-bottom: 2em;
+}
+</style>

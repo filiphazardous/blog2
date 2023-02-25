@@ -6,13 +6,34 @@ import type {
   ApiHeaderHeader as ApiHeader,
 } from "../../@types/schemas";
 
+interface ImageFormatEntry {
+  url: string;
+  [k: string]: string;
+}
+
 export function getStrapiBase() {
   return `${
     import.meta.env.SSR ? import.meta.env.VITE_STRAPI_HOST : "http://localhost"
   }:${import.meta.env.VITE_STRAPI_PORT}`;
 }
 
-type ImageSize = "original" | "thumbnail" | "small" | "medium" | "large";
+function rewriteFormatUrls(formats?: { [key: string]: ImageFormatEntry }) {
+  if (!formats) {
+    return null;
+  }
+  return Object.entries(formats).reduce((acc, item) => {
+    const [key, entry] = item;
+    const { url } = entry;
+    const rewrittenUrl = `${getStrapiBase()}${url}`;
+    return {
+      ...acc,
+      [key]: {
+        ...entry,
+        url: rewrittenUrl,
+      },
+    };
+  }, {});
+}
 
 function mapImage({
   attributes: { alternativeText, caption, formats, url },
@@ -20,7 +41,7 @@ function mapImage({
   return {
     alternativeText,
     caption,
-    formats,
+    formats: rewriteFormatUrls(formats),
     url: `${getStrapiBase()}${url}`,
   };
 }
@@ -99,6 +120,7 @@ export function getItemFactory(
   populate: string[] = [],
   filter: { [key: string]: string } = {}
 ) {
+  console.log(getStrapiBase());
   const filters = Object.keys(filter)
     .sort()
     .reduce(
