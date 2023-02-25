@@ -4,7 +4,7 @@ const strapiBase = `http://localhost:${import.meta.env.VITE_STRAPI_PORT}`;
 
 type ImageSize = 'original' | 'thumbnail' | 'small' | 'medium' | 'large';
 
-export function getListFactory(contentType: string, populate: string[] = [], imageSize: ImageSize = 'original') {
+export function getListFactory(contentType: string, populate: string[] = [], imageSize: ImageSize = 'original', sort: string = 'publishedAt:desc') {
   function mapImage({id, attributes: {alternativeText, caption, formats, url}}) {
     const imageUrl = imageSize === 'original' ?
       url :
@@ -25,7 +25,10 @@ export function getListFactory(contentType: string, populate: string[] = [], ima
       headers: {
         Authorization: `bearer ${import.meta.env.VITE_STRAPI_API_KEY}`,
       },
-      params: {populate},
+      params: {
+        sort,
+        populate
+      },
     };
 
     const uri = `${strapiBase}/api/${contentType}`;
