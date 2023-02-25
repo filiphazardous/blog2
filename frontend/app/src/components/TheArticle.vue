@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getItemFactory } from "@/api";
 import { useQuery } from "@tanstack/vue-query";
+import VueMarkdown from "vue-markdown-render";
 
 const props = defineProps({
   slug: {
@@ -32,7 +33,7 @@ const {
         <i>{{ img.caption }}</i>
       </div>
     </template>
-    {{ article.text }}
+    <vue-markdown :source="article.text" />
   </div>
 </template>
 
