@@ -1,9 +1,11 @@
 <template>
   <article>
-    <h3>{{title}}</h3>
-    <img class="article-image" :src="image.url" :alt="image.alt"/>
-    <i>{{image.caption}}</i>
-    <p>{{summary}}</p>
+    <h3>{{ title }}</h3>
+    <div v-if="image">
+      <img class="article-image" :src="image.url" :alt="image.alt"/>
+      <i>{{ image.caption }}</i>
+    </div>
+    <p>{{ summary }}</p>
   </article>
 </template>
 

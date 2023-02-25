@@ -1,13 +1,12 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import {VueQueryPlugin} from '@tanstack/vue-query';
+import type {Plugin} from 'vue';
+import {createApp} from 'vue';
+import App from './App.vue';
 
-import './assets/main.css'
+import './assets/main.css';
+import router from './router';
 
-const app = createApp(App)
-
-app.use(router)
-
-app.mount('#app')
-
-console.log(import.meta.env);
+createApp(App)
+  .use(VueQueryPlugin as Plugin)
+  .use(router)
+  .mount('#app');
