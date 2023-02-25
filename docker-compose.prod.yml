@@ -34,6 +34,12 @@ services:
       DATABASE_USERNAME: strapi
       DATABASE_PASSWORD: strapi
       DATABASE_SSL: 'false'
+      HOST: ${HOST}
+      PORT: ${PORT}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      JWT_SECRET: ${JWT_SECRET}
     volumes:
       - ./backend/app/src:/opt/app/src
       - ./backend/app/database:/opt/app/database
@@ -55,9 +61,7 @@ services:
         VITE_STRAPI_PORT: '1337'
         VITE_STRAPI_HOST: 'http://localhost'
         BASE_URL: ''
-      depends_on:
-        strapi:
-          condition: service_healthy
+        VITE_STRAPI_API_KEY: ${VITE_STRAPI_API_KEY}
     image: vue-app:prod-latest
     restart: unless-stopped
     volumes:
