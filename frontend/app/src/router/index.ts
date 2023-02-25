@@ -1,3 +1,4 @@
+import ArticleView from '@/views/ArticleView.vue';
 import { createRouter, createWebHistory } from 'vue-router'
 import ListView from '@/views/ListView.vue';
 
@@ -8,6 +9,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: ListView
+    },
+    {
+      path: '/article/:slug',
+      name: 'Article',
+      component: ArticleView
     }
   ]
 })

@@ -6,6 +6,7 @@
       <i>{{ image[0].caption }}</i>
     </div>
     <p>{{ summary }}</p>
+    <router-link :to="link">Läs mer...</router-link>
   </article>
 </template>
 
@@ -13,9 +14,15 @@
 export default {
   name: "ListItem",
   props: {
-    title: 'String',
-    summary: 'String',
-    image: 'Array'
+    title: String,
+    slug: String,
+    summary: String,
+    image: Array
+  },
+  data() {
+    return {
+      link: `/article/${this.slug}`
+    }
   }
 }
 </script>

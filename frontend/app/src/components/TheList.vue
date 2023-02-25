@@ -13,5 +13,5 @@ const {isLoading, isError, data: list, error} = useQuery(getListFactory('article
     <h1>Error</h1>
     <pre>{{ JSON.stringify(error, null, '\t')}}</pre>
   </div>
-  <ListItem v-else v-for="item in list" :title="item.title" :summary="item.summary" :image="item.image"/>
+  <ListItem v-else v-for="item in list" :title="item.title" :summary="item.summary" :image="item.image" :slug="item.slug"/>
 </template>
