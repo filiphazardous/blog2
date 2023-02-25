@@ -2,7 +2,7 @@
   <article>
     <h3>{{ title }}</h3>
     <div v-if="image && image.length">
-      <img class="article-image" :src="image[0].url" :alt="image[0].alt"/>
+      <img class="article-image" :src="image[0].url" :alt="image[0].alt" />
       <i>{{ image[0].caption }}</i>
     </div>
     <p>{{ summary }}</p>
@@ -17,14 +17,14 @@ export default {
     title: String,
     slug: String,
     summary: String,
-    image: Array
+    image: Array,
   },
   data() {
     return {
-      link: `/article/${this.slug}`
-    }
-  }
-}
+      link: `/article/${this.slug}`,
+    };
+  },
+};
 </script>
 
 <style scoped>

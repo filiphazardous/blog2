@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheList from '@/components/TheList.vue';
+import TheList from "@/components/TheList.vue";
 </script>
 
 <template>

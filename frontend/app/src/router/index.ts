@@ -1,21 +1,21 @@
-import ArticleView from '@/views/ArticleView.vue';
-import { createRouter, createWebHistory } from 'vue-router'
-import ListView from '@/views/ListView.vue';
+import ArticleView from "@/views/ArticleView.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import ListView from "@/views/ListView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: ListView
+      path: "/",
+      name: "home",
+      component: ListView,
     },
     {
-      path: '/article/:slug',
-      name: 'Article',
-      component: ArticleView
-    }
-  ]
-})
+      path: "/article/:slug",
+      name: "Article",
+      component: ArticleView,
+    },
+  ],
+});
 
-export default router
+export default router;

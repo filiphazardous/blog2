@@ -1,31 +1,37 @@
 <script setup lang="ts">
-import {getItemFactory} from '@/api';
-import {useQuery} from '@tanstack/vue-query';
+import { getItemFactory } from "@/api";
+import { useQuery } from "@tanstack/vue-query";
 
-const {slug} = defineProps({
+const props = defineProps({
   slug: {
     type: String,
     required: true,
   },
 });
 
-const {isLoading, isError, data: article, error} = useQuery(getItemFactory(slug, 'articles', ['image'], 'large'));
-console.log(article);
+const {
+  isLoading,
+  isError,
+  data: article,
+  error,
+} = useQuery(getItemFactory(props.slug, "articles", ["image"], "large"));
 </script>
 
 <template>
   <span v-if="isLoading">Loading...</span>
   <div v-else-if="isError">
     <h1>Error</h1>
-    <pre>{{ JSON.stringify(error, null, '\t') }}</pre>
+    <pre>{{ JSON.stringify(error, null, "\t") }}</pre>
   </div>
   <div v-else>
     <h1>{{ article.title }}</h1>
     <p>{{ article.summary }}</p>
-    <div v-if="article.image.length" v-for="img in article.image">
-      <img class="article-image" :src="img.url" :alt="img.alt" />
-      <i>{{ img.caption }}</i>
-    </div>
+    <template v-if="article.image.length">
+      <div v-for="img in article.image" :key="img.url">
+        <img class="article-image" :src="img.url" :alt="img.alt" />
+        <i>{{ img.caption }}</i>
+      </div>
+    </template>
     {{ article.text }}
   </div>
 </template>
