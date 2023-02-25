@@ -1,9 +1,9 @@
 <template>
   <article>
     <h3>{{ title }}</h3>
-    <div v-if="image">
-      <img class="article-image" :src="image.url" :alt="image.alt"/>
-      <i>{{ image.caption }}</i>
+    <div v-if="image && image.length">
+      <img class="article-image" :src="image[0].url" :alt="image[0].alt"/>
+      <i>{{ image[0].caption }}</i>
     </div>
     <p>{{ summary }}</p>
   </article>
@@ -15,7 +15,7 @@ export default {
   props: {
     title: 'String',
     summary: 'String',
-    image: 'Object'
+    image: 'Array'
   }
 }
 </script>
