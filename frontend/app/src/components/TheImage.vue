@@ -30,7 +30,12 @@ const imageUrl = computed(() => {
 
 <template>
   <div class="image-wrapper">
-    <img class="image" :src="imageUrl" :alt="props.image.alternativeText" />
+    <img
+      class="image"
+      :src="imageUrl"
+      :alt="props.image.alternativeText"
+      :title="props.image.caption"
+    />
     <span
       v-if="props.imageSize !== 'thumbnail' && props.imageSize !== 'small'"
       class="image-caption"
