@@ -9,4 +9,5 @@ WORKDIR /opt/app
 COPY ./app/ .
 RUN npm run build
 EXPOSE 1337
+RUN apt update && apt install wget -y
 CMD ["npm", "run", "develop"]

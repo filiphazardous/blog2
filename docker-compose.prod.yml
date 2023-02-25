@@ -13,6 +13,11 @@ services:
     user: "${UID:-1000}"
     ports:
       - '3307:3307'
+    healthcheck:
+      test: echo "test" && /usr/bin/mysql --user=root --port=3307 --password=strapi --execute "SHOW DATABASE;"
+      interval: 5s
+      timeout: 5s
+      retries: 20
 
   strapi:
     container_name: strapi
@@ -35,7 +40,8 @@ services:
       - ./backend/app/config:/opt/app/config
       - ./backend/app/public:/opt/app/public
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     ports:
       - '1337:1337'
 
@@ -49,6 +55,9 @@ services:
         VITE_STRAPI_PORT: '1337'
         VITE_STRAPI_HOST: 'http://localhost'
         BASE_URL: ''
+      depends_on:
+        strapi:
+          condition: service_healthy
     image: vue-app:prod-latest
     restart: unless-stopped
     volumes:
