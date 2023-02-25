@@ -34,6 +34,8 @@ services:
       - ./backend/app/public:/opt/app/public
     depends_on:
       - mariadb
+    ports:
+      - '1337:1337'
 
   vue:
     container_name: vue
@@ -46,6 +48,7 @@ services:
       - ./frontend/app/src:/opt/app/src
     environment:
       VITE_STRAPI_PORT: 1337
+      BASE_URL: ''
     ports:
       - '5173:5173'
     depends_on:
