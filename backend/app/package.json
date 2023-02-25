@@ -20,9 +20,6 @@
   "author": {
     "name": "Filip Joelsson <filip.gberg@gmail.com>"
   },
-  "strapi": {
-    "uuid": "34b3cd81-052e-4a52-8810-2f8290db0f54"
-  },
   "engines": {
     "node": ">=18.x.x",
     "npm": ">=8.x.x"
