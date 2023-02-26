@@ -23,8 +23,8 @@ services:
     container_name: strapi
     build:
       context: ./backend
-      dockerfile: dev.Dockerfile
-    image: strapi:dev-latest
+      dockerfile: prod.Dockerfile
+    image: strapi:prod-latest
     restart: unless-stopped
     healthcheck:
       test: wget http://localhost:1337/_health
