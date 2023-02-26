@@ -9,12 +9,12 @@
     "strapi": "strapi"
   },
   "devDependencies": {
-    "@types/node": "^18.13.0"
+    "@types/node": "^18.14.1"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.6.1",
-    "@strapi/plugin-users-permissions": "4.6.1",
-    "@strapi/strapi": "4.6.1",
+    "@strapi/plugin-i18n": "4.6.2",
+    "@strapi/plugin-users-permissions": "4.6.2",
+    "@strapi/strapi": "4.6.2",
     "mysql": "2.18.1"
   },
   "author": {
