@@ -1,0 +1,20 @@
+# fly.toml file generated for strapidb on 2023-03-04T17:50:56+01:00
+
+app = "strapidb"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[build]
+  image = "mysql:8"
+
+[env]
+  MYSQL_DATABASE = "strapi"
+  MYSQL_TCP_PORT = "3307"
+  MYSQL_USER = "strapi"
+
+[experimental]
+  cmd = ["--default-authentication-plugin", "mysql_native_password", "--datadir", "/data/mysql", "--performance-schema=OFF", "--innodb-buffer-pool-size", "64M"]
+
+[mounts]
+  destination = "/data"
+  source = "strapidbdata"
