@@ -12,9 +12,9 @@ interface ImageFormatEntry {
 }
 
 export function getStrapiBase() {
-  return `${
-    import.meta.env.SSR ? import.meta.env.VITE_STRAPI_HOST : "http://localhost"
-  }:${import.meta.env.VITE_STRAPI_PORT}`;
+  return `${import.meta.env.VITE_STRAPI_HOST}:${
+    import.meta.env.VITE_STRAPI_PORT
+  }`;
 }
 
 function rewriteFormatUrls(formats?: { [key: string]: ImageFormatEntry }) {
