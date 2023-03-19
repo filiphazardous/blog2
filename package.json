@@ -1,6 +1,6 @@
 {
   "name": "pixiblog",
-  "version": "0.1.0",
+  "version": "0.1.0-blog-bump",
   "description": "A Strapi-base blog",
   "scripts": {
     "dev": "docker-compose -f docker-compose.dev.yml up -d",
