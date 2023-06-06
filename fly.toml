@@ -1,36 +1,38 @@
-# fly.toml file generated for pixieblog on 2023-03-04T18:28:09+01:00
+# fly.toml app configuration file generated for pixieblog on 2023-06-06T17:19:00+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
 app = "pixieblog"
+primary_region = "arn"
 kill_signal = "SIGINT"
-kill_timeout = 5
-processes = []
+kill_timeout = "5s"
 
 [build]
   dockerfile = "fly.Dockerfile"
 
 [env]
-  DATABASE_CLIENT="mysql"
-  DATABASE_HOST="strapidb.internal"
-  DATABASE_PORT="3307"
-  DATABASE_NAME="strapi"
-  DATABASE_USERNAME="strapi"
-  DATABASE_SSL="false"
-  PORT="8080"
-  HOST="0.0.0.0"
-
-[mounts]
-  destination="/opt/app/public/uploads"
-  source="strapipublic"
+  DATABASE_CLIENT = "mysql"
+  DATABASE_HOST = "strapidb.internal"
+  DATABASE_PORT = "3307"
+  DATABASE_NAME = "strapi"
+  DATABASE_USERNAME = "strapi"
+  DATABASE_SSL = "false"
+  PORT = "8080"
+  HOST = "0.0.0.0"
 
 [experimental]
   auto_rollback = true
 
+[[mounts]]
+  destination = "/opt/app/public/uploads"
+  source = "strapipublic_machines"
+  processes = ["app"]
+
 [[services]]
-  http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
-  script_checks = []
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
