@@ -1,6 +1,6 @@
 {
   "name": "pixieblog-backend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
@@ -9,7 +9,7 @@
     "strapi": "strapi"
   },
   "devDependencies": {
-    "@types/node": "^20.2.5"
+    "@types/node": "^18.11.9"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.10.7",
