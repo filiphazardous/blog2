@@ -1,5 +1,5 @@
 # Pixieblog
-A simple test-project for Strapi/Vue combo
+A simple test-project for Strapi/Vue combo.
 
 ## Create the dev environment
 
