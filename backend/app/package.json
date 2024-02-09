@@ -1,6 +1,6 @@
 {
   "name": "pixieblog-backend",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
@@ -9,12 +9,12 @@
     "strapi": "strapi"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9"
+    "@types/node": "^18.19.15"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.10.7",
-    "@strapi/plugin-users-permissions": "4.10.7",
-    "@strapi/strapi": "4.10.7",
+    "@strapi/plugin-i18n": "4.20.0",
+    "@strapi/plugin-users-permissions": "4.20.0",
+    "@strapi/strapi": "4.20.0",
     "mysql": "2.18.1"
   },
   "author": {
