@@ -1,4 +1,4 @@
-FROM node:18-alpine as builder
+FROM node:20-alpine as builder
 ARG NODE_ENV=production
 ENV NODE_ENV=$NODE_ENV
 ARG PROD_STRAPI_HOST
@@ -18,7 +18,7 @@ WORKDIR /app
 COPY ./frontend/app/ .
 RUN npm run build-only
 
-FROM node:18-bullseye-slim
+FROM node:20-bullseye-slim
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/

@@ -24,8 +24,8 @@
     "name": "Filip Joelsson <filip.gberg@gmail.com>"
   },
   "engines": {
-    "node": ">=18.x.x",
-    "npm": ">=8.x.x"
+    "node": ">=20.x.x",
+    "npm": ">=10.x.x"
   },
   "license": "MIT"
 }
